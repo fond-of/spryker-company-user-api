@@ -48,7 +48,7 @@ class CompanyUserApiResourcePlugin extends AbstractPlugin implements ApiResource
      */
     public function get($id): ApiItemTransfer
     {
-        return $this->getFacade()->getCompanyUser($id);
+        return $this->getFacade()->getCompanyUser((int) $id);
     }
 
     /**
