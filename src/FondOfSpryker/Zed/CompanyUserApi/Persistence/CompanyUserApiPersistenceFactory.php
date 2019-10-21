@@ -8,6 +8,7 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 
 /**
  * @method \FondOfSpryker\Zed\CompanyUserApi\CompanyUserApiConfig getConfig()
+ * @method \FondOfSpryker\Zed\CompanyUserApi\Persistence\CompanyUserApiQueryContainerInterface getQueryContainer()
  */
 class CompanyUserApiPersistenceFactory extends AbstractPersistenceFactory
 {
