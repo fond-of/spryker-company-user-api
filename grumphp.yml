@@ -9,6 +9,7 @@ parameters:
     xmllint: ~
     phpcs:
       standard: vendor/spryker/code-sniffer/Spryker/ruleset.xml
+      ignore_patterns: ['src/Generated']
     phpcpd:
-      exclude: ['vendor', 'tests']
+      exclude: ['vendor', 'tests', 'src/Generated']
     codeception: ~
