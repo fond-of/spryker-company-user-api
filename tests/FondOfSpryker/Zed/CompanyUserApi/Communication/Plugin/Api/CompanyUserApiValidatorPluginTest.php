@@ -1,14 +1,13 @@
 <?php
 
-namespace FondOfSpryker\Zed\CompanyApi\Communication\Plugin\Api;
+namespace FondOfSpryker\Zed\CompanyUserApi\Communication\Plugin\Api;
 
 use Codeception\Test\Unit;
 use FondOfSpryker\Zed\CompanyUserApi\Business\CompanyUserApiFacade;
-use FondOfSpryker\Zed\CompanyUserApi\Communication\Plugin\Api\CompanyUserApiValidatorPlugin;
 use FondOfSpryker\Zed\CompanyUserApi\CompanyUserApiConfig;
 use Generated\Shared\Transfer\ApiDataTransfer;
 
-class CompanyApiValidatorPluginTest extends Unit
+class CompanyUserApiValidatorPluginTest extends Unit
 {
     /**
      * @var \FondOfSpryker\Zed\CompanyUserApi\Communication\Plugin\Api\CompanyUserApiValidatorPlugin
