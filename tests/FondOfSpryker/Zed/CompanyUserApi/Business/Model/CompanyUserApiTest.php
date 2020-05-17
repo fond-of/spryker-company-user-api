@@ -1,6 +1,5 @@
 <?php
 
-
 namespace FondOfSpryker\Zed\CompanyUserApi\Business\Model;
 
 use ArrayObject;
@@ -146,7 +145,7 @@ class CompanyUserApiTest extends Unit
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->transferData = [["idCompanyUser" => 1]];
+        $this->transferData = [['idCompanyUser' => 1]];
 
         $this->idCompanyUser = 1;
 
@@ -240,7 +239,12 @@ class CompanyUserApiTest extends Unit
     {
         $this->companyUserFacadeMock->expects($this->atLeastOnce())
             ->method('getCompanyUserById')
+            ->with($this->idCompanyUser)
             ->willReturn($this->companyUserTransferMock);
+
+        $this->companyUserTransferMock->expects($this->atLeastOnce())
+            ->method('getIdCompanyUser')
+            ->willReturn($this->idCompanyUser);
 
         $this->apiQueryContainerMock->expects($this->atLeastOnce())
             ->method('createApiItem')
@@ -253,12 +257,41 @@ class CompanyUserApiTest extends Unit
     /**
      * @return void
      */
+    public function testGetWithError(): void
+    {
+        $this->companyUserFacadeMock->expects($this->atLeastOnce())
+            ->method('getCompanyUserById')
+            ->with($this->idCompanyUser)
+            ->willReturn($this->companyUserTransferMock);
+
+        $this->companyUserTransferMock->expects($this->atLeastOnce())
+            ->method('getIdCompanyUser')
+            ->willReturn(null);
+
+        $this->apiQueryContainerMock->expects($this->never())
+            ->method('createApiItem')
+            ->with($this->companyUserTransferMock, $this->idCompanyUser);
+
+        try {
+            $this->companyUserApi->get($this->idCompanyUser);
+            $this->fail();
+        } catch (Exception $e) {
+        }
+    }
+
+    /**
+     * @return void
+     */
     public function testUpdate(): void
     {
         $this->companyUserFacadeMock->expects($this->atLeastOnce())
             ->method('getCompanyUserById')
             ->with($this->idCompanyUser)
             ->willReturn($this->companyUserTransferMock);
+
+        $this->companyUserTransferMock->expects($this->atLeastOnce())
+            ->method('getIdCompanyUser')
+            ->willReturn($this->idCompanyUser);
 
         $this->apiDataTransferMock->expects($this->atLeastOnce())
             ->method('getData')
@@ -288,6 +321,10 @@ class CompanyUserApiTest extends Unit
             ->method('getCompanyUserById')
             ->with($this->idCompanyUser)
             ->willReturn($this->companyUserTransferMock);
+
+        $this->companyUserTransferMock->expects($this->atLeastOnce())
+            ->method('getIdCompanyUser')
+            ->willReturn($this->idCompanyUser);
 
         $this->apiDataTransferMock->expects($this->atLeastOnce())
             ->method('getData')

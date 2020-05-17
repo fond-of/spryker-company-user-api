@@ -111,7 +111,7 @@ class CompanyUserApi implements CompanyUserApiInterface
     {
         $companyUserTransfer = $this->companyUserFacade->getCompanyUserById($idCompanyUser);
 
-        if ($companyUserTransfer === null) {
+        if ($companyUserTransfer->getIdCompanyUser() === null) {
             throw new EntityNotFoundException(sprintf('Company user not found for id %s', $idCompanyUser));
         }
 
@@ -131,7 +131,7 @@ class CompanyUserApi implements CompanyUserApiInterface
     {
         $companyUserTransfer = $this->companyUserFacade->getCompanyUserById($idCompanyUser);
 
-        if ($companyUserTransfer === null) {
+        if ($companyUserTransfer->getIdCompanyUser() === null) {
             throw new EntityNotFoundException(sprintf('Company user not found: %s', $idCompanyUser));
         }
 
@@ -173,8 +173,6 @@ class CompanyUserApi implements CompanyUserApiInterface
 
     /**
      * @param \Generated\Shared\Transfer\ApiRequestTransfer $apiRequestTransfer
-     *
-     * @throws
      *
      * @return \Generated\Shared\Transfer\ApiCollectionTransfer
      */
@@ -224,8 +222,6 @@ class CompanyUserApi implements CompanyUserApiInterface
     }
 
     /**
-     * @throws
-     *
      * @return \Generated\Shared\Transfer\PropelQueryBuilderColumnSelectionTransfer
      */
     protected function buildColumnSelection(): PropelQueryBuilderColumnSelectionTransfer
@@ -251,7 +247,7 @@ class CompanyUserApi implements CompanyUserApiInterface
      *
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      *
-     * @return array|\Generated\Shared\Transfer\ApiCollectionTransfer
+     * @return \Generated\Shared\Transfer\ApiCollectionTransfer
      */
     protected function addPagination(
         ModelCriteria $query,
